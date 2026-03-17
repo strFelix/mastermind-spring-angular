@@ -1,0 +1,107 @@
+# =========================
+
+# MASTER REPO .gitignore
+
+# Angular + Spring Boot
+
+# =========================
+
+# =========================
+
+# Node / Angular
+
+# =========================
+
+node_modules/
+dist/
+tmp/
+out-tsc/
+bazel-out/
+
+npm-debug.log
+yarn-error.log
+
+.angular/cache
+.sass-cache/
+coverage/
+connect.lock
+libpeerconnection.log
+testem.log
+typings/
+**screenshots**/
+
+# =========================
+
+# Java / Maven / Spring
+
+# =========================
+
+target/
+build/
+!**/src/main/**/target/
+!**/src/test/**/target/
+!**/src/main/**/build/
+!**/src/test/**/build/
+
+.mvn/wrapper/maven-wrapper.jar
+
+# =========================
+
+# IDEs
+
+# =========================
+
+# IntelliJ
+
+.idea/
+*.iws
+*.iml
+*.ipr
+
+# Eclipse / STS
+
+.apt_generated
+.classpath
+.factorypath
+.project
+.settings/
+.springBeans
+.sts4-cache
+
+# NetBeans
+
+/nbproject/private/
+/nbbuild/
+/nbdist/
+/.nb-gradle/
+
+# =========================
+
+# VS Code
+
+# =========================
+
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+!.vscode/mcp.json
+
+# =========================
+
+# Misc
+
+# =========================
+
+.history/
+HELP.md
+
+# =========================
+
+# System files
+
+# =========================
+
+.DS_Store
+Thumbs.db
