@@ -12,23 +12,21 @@
 
 # =========================
 
-node_modules/
-dist/
-tmp/
-out-tsc/
-bazel-out/
-
-npm-debug.log
-yarn-error.log
-
-.angular/cache
-.sass-cache/
-coverage/
-connect.lock
-libpeerconnection.log
-testem.log
-typings/
-**screenshots**/
+mastermind-angular/node_modules/
+mastermind-angular/dist/
+mastermind-angular/tmp/
+mastermind-angular/out-tsc/
+mastermind-angular/bazel-out/
+mastermind-angular/npm-debug.log
+mastermind-angular/yarn-error.log
+mastermind-angular/.angular/cache
+mastermind-angular/.sass-cache/
+mastermind-angular/coverage/
+mastermind-angular/connect.lock
+mastermind-angular/libpeerconnection.log
+mastermind-angular/testem.log
+mastermind-angular/typings/
+mastermind-angular/**screenshots**/
 
 # =========================
 
@@ -36,14 +34,14 @@ typings/
 
 # =========================
 
-target/
-build/
-!**/src/main/**/target/
-!**/src/test/**/target/
-!**/src/main/**/build/
-!**/src/test/**/build/
-
-.mvn/wrapper/maven-wrapper.jar
+mastermind-spring/target/
+mastermind-spring/build/
+mastermind-spring/!**/src/main/**/target/
+mastermind-spring/!**/src/test/**/target/
+mastermind-spring/!**/src/main/**/build/
+mastermind-spring/!**/src/test/**/build/
+mastermind-spring/
+mastermind-spring/.mvn/wrapper/maven-wrapper.jar
 
 # =========================
 
