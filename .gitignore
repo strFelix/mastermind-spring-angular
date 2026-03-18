@@ -36,11 +36,10 @@ mastermind-angular/**screenshots**/
 
 mastermind-spring/target/
 mastermind-spring/build/
-mastermind-spring/!**/src/main/**/target/
-mastermind-spring/!**/src/test/**/target/
-mastermind-spring/!**/src/main/**/build/
-mastermind-spring/!**/src/test/**/build/
-mastermind-spring/
+!mastermind-spring/**/src/main/**/target/
+!mastermind-spring/**/src/test/**/target/
+!mastermind-spring/**/src/main/**/build/
+!mastermind-spring/**/src/test/**/build/
 mastermind-spring/.mvn/wrapper/maven-wrapper.jar
 
 # =========================
@@ -80,6 +79,7 @@ mastermind-spring/.mvn/wrapper/maven-wrapper.jar
 # =========================
 
 .vscode/*
+mastermind-angular/.vscode
 !.vscode/settings.json
 !.vscode/tasks.json
 !.vscode/launch.json
