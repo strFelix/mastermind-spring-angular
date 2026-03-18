@@ -1,4 +1,4 @@
-package br.com.strfelix.mastermind_spring.exceptions;
+package br.com.strfelix.mastermind_spring.exceptions.game;
 
 public class GameNotFoundException extends RuntimeException {
     public GameNotFoundException(String message) {

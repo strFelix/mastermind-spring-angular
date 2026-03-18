@@ -1,6 +1,11 @@
 package br.com.strfelix.mastermind_spring.exceptions;
 
 import br.com.strfelix.mastermind_spring.dto.response.ErrorResponse;
+import br.com.strfelix.mastermind_spring.exceptions.auth.InvalidCredentialsException;
+import br.com.strfelix.mastermind_spring.exceptions.game.GameAlreadyFinishedException;
+import br.com.strfelix.mastermind_spring.exceptions.game.GameNotFoundException;
+import br.com.strfelix.mastermind_spring.exceptions.user.UserAlreadyExistsException;
+import br.com.strfelix.mastermind_spring.exceptions.user.UserNotFoundException;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
