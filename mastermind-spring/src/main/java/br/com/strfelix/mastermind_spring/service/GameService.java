@@ -1,9 +1,9 @@
 package br.com.strfelix.mastermind_spring.service;
 
 
-import br.com.strfelix.mastermind_spring.dto.GameResponse;
-import br.com.strfelix.mastermind_spring.dto.GuessRequest;
-import br.com.strfelix.mastermind_spring.dto.GuessResponse;
+import br.com.strfelix.mastermind_spring.dto.response.GameResponse;
+import br.com.strfelix.mastermind_spring.dto.request.GuessRequest;
+import br.com.strfelix.mastermind_spring.dto.response.GuessResponse;
 import br.com.strfelix.mastermind_spring.exceptions.GameAlreadyFinishedException;
 import br.com.strfelix.mastermind_spring.exceptions.GameNotFoundException;
 import br.com.strfelix.mastermind_spring.exceptions.UserNotFoundException;

@@ -1,4 +1,4 @@
-package br.com.strfelix.mastermind_spring.dto;
+package br.com.strfelix.mastermind_spring.dto.response;
 
 import java.time.LocalDateTime;
 

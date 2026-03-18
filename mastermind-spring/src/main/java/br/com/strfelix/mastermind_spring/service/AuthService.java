@@ -1,8 +1,8 @@
 package br.com.strfelix.mastermind_spring.service;
 
-import br.com.strfelix.mastermind_spring.dto.LoginRequest;
-import br.com.strfelix.mastermind_spring.dto.RegisterRequest;
-import br.com.strfelix.mastermind_spring.dto.UserResponse;
+import br.com.strfelix.mastermind_spring.dto.request.LoginRequest;
+import br.com.strfelix.mastermind_spring.dto.request.RegisterRequest;
+import br.com.strfelix.mastermind_spring.dto.response.UserResponse;
 import br.com.strfelix.mastermind_spring.exceptions.InvalidCredentialsException;
 import br.com.strfelix.mastermind_spring.exceptions.UserAlreadyExistsException;
 import br.com.strfelix.mastermind_spring.model.User;

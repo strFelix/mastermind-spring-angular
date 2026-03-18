@@ -1,7 +1,7 @@
 package br.com.strfelix.mastermind_spring.controller;
 
-import br.com.strfelix.mastermind_spring.dto.LoginRequest;
-import br.com.strfelix.mastermind_spring.dto.RegisterRequest;
+import br.com.strfelix.mastermind_spring.dto.request.LoginRequest;
+import br.com.strfelix.mastermind_spring.dto.request.RegisterRequest;
 import br.com.strfelix.mastermind_spring.service.AuthService;
 import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;

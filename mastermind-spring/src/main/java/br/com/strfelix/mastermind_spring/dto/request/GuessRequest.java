@@ -1,4 +1,4 @@
-package br.com.strfelix.mastermind_spring.dto;
+package br.com.strfelix.mastermind_spring.dto.request;
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;

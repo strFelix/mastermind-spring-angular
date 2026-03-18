@@ -1,6 +1,6 @@
 package br.com.strfelix.mastermind_spring.controller;
 
-import br.com.strfelix.mastermind_spring.dto.GuessRequest;
+import br.com.strfelix.mastermind_spring.dto.request.GuessRequest;
 import br.com.strfelix.mastermind_spring.service.GameService;
 import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;

@@ -1,6 +1,6 @@
 package br.com.strfelix.mastermind_spring.exceptions;
 
-import br.com.strfelix.mastermind_spring.dto.ErrorResponse;
+import br.com.strfelix.mastermind_spring.dto.response.ErrorResponse;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
