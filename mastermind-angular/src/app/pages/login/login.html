@@ -1,0 +1,59 @@
+<div class="min-h-screen bg-[#0f0f0f] flex items-center justify-center px-4">
+  <div class="w-full max-w-sm">
+
+    <h1 class="font-serif text-4xl text-white tracking-tight mb-1">
+      Master<span class="italic text-[#c8f04c]">mind</span>
+    </h1>
+    <p class="text-sm text-neutral-500 font-light mb-10">Entre para jogar</p>
+
+    <form [formGroup]="form" (ngSubmit)="onLogin()">
+
+      <div class="mb-4">
+        <label class="block text-[11px] font-medium tracking-widest uppercase text-neutral-600 mb-1.5">
+          Usuário
+        </label>
+        <input
+          formControlName="username"
+          type="text"
+          placeholder="seu usuário"
+          class="w-full bg-[#1a1a1a] border border-[#2a2a2a] rounded-lg px-4 py-3 text-sm text-white
+                 outline-none focus:border-[#c8f04c] transition-colors placeholder:text-neutral-700"/>
+      </div>
+
+      <div class="mb-6">
+        <label class="block text-[11px] font-medium tracking-widest uppercase text-neutral-600 mb-1.5">
+          Senha
+        </label>
+        <input
+          formControlName="password"
+          type="password"
+          placeholder="••••••••"
+          class="w-full bg-[#1a1a1a] border border-[#2a2a2a] rounded-lg px-4 py-3 text-sm text-white
+                 outline-none focus:border-[#c8f04c] transition-colors placeholder:text-neutral-700"/>
+      </div>
+
+      @if(errorMessage()){
+        <p class="text-red-400 text-sm mb-4 text-center">
+          {{ errorMessage() }}
+        </p>
+      }
+
+      <button
+        type="submit"
+        [disabled]="loading()"
+        [class.cursor-pointer]="form.valid && !loading()"
+        [class.cursor-not-allowed]="form.invalid || loading()"
+        class="w-full bg-[#c8f04c] text-[#0f0f0f] font-medium rounded-lg py-3 text-sm
+               hover:opacity-90 transition-opacity disabled:opacity-50 disabled:cursor-not-allowed">
+        {{ loading() ? 'Entrando...' : 'Entrar' }}
+      </button>
+
+    </form>
+
+    <p class="text-center text-sm text-neutral-600 mt-6">
+      Não tem conta?
+      <a routerLink="/register" class="text-[#c8f04c] hover:underline">Cadastre-se</a>
+    </p>
+
+  </div>
+</div>
