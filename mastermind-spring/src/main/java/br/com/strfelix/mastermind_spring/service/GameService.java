@@ -17,6 +17,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.oauth2.jwt.Jwt;
 import org.springframework.stereotype.Service;
 
+import java.time.Duration;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Random;
@@ -49,7 +50,10 @@ public class GameService {
     }
 
     private int calculateScore(Game game) {
-        return Math.max(0, 100 - (game.getAttempts() * 10));
+        long seconds = Duration.between(game.getStartTime(), game.getEndTime()).getSeconds();
+        int attemptPenalty = game.getAttempts() * 100;
+        int timePenalty = (int) (seconds * 2);
+        return Math.max(0, 1000 - attemptPenalty - timePenalty);
     }
 
     private void validateGameNotFinished(Game game) {
@@ -70,8 +74,8 @@ public class GameService {
 
     private void finalizeGame(Game game, boolean won) {
         if (won) {
-            game.setScore(calculateScore(game));
             game.setEndTime(LocalDateTime.now());
+            game.setScore(calculateScore(game));
         } else if (game.getAttempts() >= 10) {
             game.setScore(0);
             game.setEndTime(LocalDateTime.now());
