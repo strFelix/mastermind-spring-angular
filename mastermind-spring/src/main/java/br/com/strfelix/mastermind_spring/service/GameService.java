@@ -18,6 +18,7 @@ import org.springframework.security.oauth2.jwt.Jwt;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.Random;
 
 @Service
@@ -82,14 +83,29 @@ public class GameService {
         }
     }
 
-    public Game startGame(Jwt token){
+    private GameResponse toGameResponse(Game game){
+        boolean finished = game.getEndTime() != null;
+        boolean won = finished && game.getScore() != null && game.getScore() > 0;
+
+        return new GameResponse(
+                game.getId(),
+                game.getAttempts(),
+                game.getScore(),
+                game.getStartTime(),
+                game.getEndTime(),
+                finished,
+                won
+        );
+    }
+
+    public GameResponse startGame(Jwt token){
         Long userId = token.getClaim("id");
         User user = userRepository.findById(userId)
                 .orElseThrow(() -> new UserNotFoundException("User not found"));
 
         Game game = new Game(null, generateSecretCode(), 0, 0, LocalDateTime.now(), null, user);
 
-        return gameRepository.save(game);
+        return toGameResponse(gameRepository.save(game));
     }
 
     public GuessResponse makeGuess(Long gameId, GuessRequest request) {
@@ -131,5 +147,13 @@ public class GameService {
                 finished,
                 won
         );
+    }
+
+    public List<GameResponse> getUserHistory(Jwt token){
+        Long userId = token.getClaim("id");
+        return gameRepository.findByUserIdOrderByEndTimeDesc(userId)
+                .stream()
+                .map(this::toGameResponse)
+                .toList();
     }
 }

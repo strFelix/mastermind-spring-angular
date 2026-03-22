@@ -33,4 +33,9 @@ public class GameController {
     public ResponseEntity<?> getGame(@PathVariable Long id) {
         return ResponseEntity.ok(gameService.getGame(id));
     }
+
+    @GetMapping("history")
+    public ResponseEntity<?> getUserHistory(@AuthenticationPrincipal Jwt token){
+        return ResponseEntity.ok(gameService.getUserHistory(token));
+    }
 }
