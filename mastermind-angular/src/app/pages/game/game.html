@@ -103,7 +103,7 @@
                    [class]="currentGuess()[i]
                      ? 'bg-[#222] border-[#c8f04c]/30 text-white'
                      : 'bg-[#1a1a1a] border-[#2a2a2a] text-neutral-700'">
-                {{ currentGuess()[i] ?? '' }}
+                {{ currentGuess()[i] ? currentGuess()[i] : '' }}
               </div>
             }
           </div>
