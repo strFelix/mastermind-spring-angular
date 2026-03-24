@@ -1,7 +1,7 @@
 import { Component, inject, signal, OnInit } from '@angular/core';
 import { Router, RouterLink } from '@angular/router';
 import { CommonModule, DatePipe } from '@angular/common';
-import { Auth } from '../../services/auth/auth';
+import { AuthService } from '../../services/auth/auth';
 import { GameService, GameResponse } from '../../services/game/game';
 
 @Component({
@@ -11,7 +11,7 @@ import { GameService, GameResponse } from '../../services/game/game';
   templateUrl: './dashboard.html',
 })
 export class Dashboard implements OnInit {
-  private auth   = inject(Auth);
+  private auth   = inject(AuthService);
   private game   = inject(GameService);
   private router = inject(Router);
 

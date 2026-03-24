@@ -7,7 +7,7 @@ import { tap } from 'rxjs';
   providedIn: 'root',
 })
 @Injectable({ providedIn: 'root' })
-export class Auth {
+export class AuthService {
   private http = inject(HttpClient);
   private router = inject(Router);
   private baseUrl = 'http://localhost:8080';

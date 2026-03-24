@@ -30,7 +30,7 @@ export class Game implements OnInit {
   showModal    = signal(false);
 
   readonly maxAttempts = 10;
-  readonly letters     = ['A', 'B', 'C', 'D', 'E', 'F'];
+  readonly letters     = ['A', 'B', 'C', 'D'];
 
   get emptyRows() {
     return Array(Math.max(0, this.maxAttempts - this.attempts().length - (this.finished() ? 0 : 1))).fill(null);
@@ -46,7 +46,7 @@ export class Game implements OnInit {
   }
 
   onGuessInput(value: string) {
-    this.currentGuess.set(value.toUpperCase().replace(/[^A-F]/g, '').slice(0, 4));
+    this.currentGuess.set(value.toUpperCase().replace(/[^A-D]/g, '').slice(0, 4));
   }
 
   submitGuess() {

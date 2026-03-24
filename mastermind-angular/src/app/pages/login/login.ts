@@ -2,7 +2,7 @@ import { ChangeDetectorRef, Component, inject, signal } from '@angular/core';
 import { FormBuilder, Validators, ReactiveFormsModule } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
 import { CommonModule } from '@angular/common';
-import { Auth } from '../../services/auth/auth';
+import { AuthService } from '../../services/auth/auth';
 
 @Component({
   selector: 'app-login',
@@ -12,7 +12,7 @@ import { Auth } from '../../services/auth/auth';
 })
 export class Login {
   private fb = inject(FormBuilder);
-  private auth = inject(Auth);
+  private auth = inject(AuthService);
   private router = inject(Router);
 
   loading = signal(false);
