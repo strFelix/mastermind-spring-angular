@@ -25,7 +25,6 @@ public class JwtService {
         return Jwts.builder()
                 .subject(user.getUsername())
                 .claim("id", user.getId())
-                .claim("bestScore", user.getBestScore())
                 .expiration(new Date(System.currentTimeMillis() + expiration))
                 .signWith(key, Jwts.SIG.HS384)
                 .compact();

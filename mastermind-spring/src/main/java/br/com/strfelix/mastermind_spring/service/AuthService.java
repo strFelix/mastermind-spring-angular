@@ -9,6 +9,7 @@ import br.com.strfelix.mastermind_spring.exceptions.user.UserAlreadyExistsExcept
 import br.com.strfelix.mastermind_spring.model.User;
 import br.com.strfelix.mastermind_spring.repository.UserRepository;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.oauth2.jwt.Jwt;
 import org.springframework.stereotype.Service;
 
 
@@ -39,7 +40,8 @@ public class AuthService {
         return new UserResponse(
                 savedUser.getId(),
                 savedUser.getUsername(),
-                savedUser.getEmail()
+                savedUser.getEmail(),
+                savedUser.getBestScore()
         );
     }
 
@@ -56,6 +58,18 @@ public class AuthService {
 
         return new AuthResponse(
                 token
+        );
+    }
+
+    public UserResponse me(Jwt token) {
+        Long id = token.getClaim("id");
+        User user = userRepository.findById(id)
+                .orElseThrow(() -> new InvalidCredentialsException("Invalid credentials"));
+        return new UserResponse(
+                user.getId(),
+                user.getUsername(),
+                user.getEmail(),
+                user.getBestScore()
         );
     }
 }

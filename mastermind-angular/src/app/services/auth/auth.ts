@@ -34,8 +34,9 @@ export class AuthService {
     return this.getTokenPayload()?.sub ?? '';
   }
 
-  getBestScore(): number {
-    return this.getTokenPayload()?.bestScore ?? 0;
+  getMe() {
+  return this.http.get<{ id: number; username: string; email: string; bestScore: number }>
+    (`${this.baseUrl}/auth/me`);
   }
 
   logout() {

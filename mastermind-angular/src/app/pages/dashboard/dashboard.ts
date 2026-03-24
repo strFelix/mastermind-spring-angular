@@ -16,12 +16,16 @@ export class Dashboard implements OnInit {
   private router = inject(Router);
 
   username  = this.auth.getUsername();
-  bestScore = this.auth.getBestScore();
+  bestScore = signal(0);
 
   history = signal<GameResponse[]>([]);
   loading = signal(false);
 
   ngOnInit() {
+    this.auth.getMe().subscribe({
+      next: (user) => this.bestScore.set(user.bestScore)
+    });
+
     this.game.getHistory().subscribe({
       next: (data) => this.history.set(data),
       error: () => {}
