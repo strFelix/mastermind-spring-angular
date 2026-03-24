@@ -57,11 +57,17 @@
     @if(finished() && !won()) {
       <div class="bg-red-500/10 border border-red-500/20 rounded-xl p-6 mb-6 text-center">
         <p class="font-serif text-2xl text-red-400 mb-1">Que pena!</p>
-        <p class="text-sm text-neutral-400 mb-4">Você usou todas as tentativas</p>
+        <p class="text-sm text-neutral-400 mb-3">Você usou todas as tentativas</p>
+
+        @if(secretCode()) {
+          <p class="text-[11px] uppercase tracking-widest text-neutral-600 mb-1">O código era</p>
+          <p class="text-2xl font-medium text-white tracking-widest mb-4">{{ secretCode() }}</p>
+        }
+
         <button
           (click)="quit()"
           class="w-full bg-[#1a1a1a] border border-[#2a2a2a] text-neutral-400 font-medium
-                 rounded-lg py-3 text-sm cursor-pointer hover:text-white transition-colors">
+                rounded-lg py-3 text-sm cursor-pointer hover:text-white transition-colors">
           Voltar ao dashboard
         </button>
       </div>

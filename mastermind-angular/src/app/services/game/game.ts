@@ -15,6 +15,7 @@ export interface GuessResponse {
   correctPositions: number;
   finished: boolean;
   won: boolean;
+  secretCode: string | null;
 }
 
 @Injectable({ providedIn: 'root' })

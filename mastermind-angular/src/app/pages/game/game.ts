@@ -26,6 +26,7 @@ export class Game implements OnInit {
   loading      = signal(false);
   finished     = signal(false);
   won          = signal(false);
+  secretCode = signal<string | null>(null);
   score        = signal(0);
   showModal    = signal(false);
 
@@ -65,10 +66,13 @@ export class Game implements OnInit {
         if (res.finished) {
           this.finished.set(true);
           this.won.set(res.won);
+
           if (res.won) {
             this.game.getGame(this.gameId()!).subscribe({
               next: (game) => this.score.set(game.score ?? 0)
             });
+          } else {
+            this.secretCode.set(res.secretCode);
           }
         }
       },

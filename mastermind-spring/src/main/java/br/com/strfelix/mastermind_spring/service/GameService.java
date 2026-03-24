@@ -131,7 +131,10 @@ public class GameService {
 
         gameRepository.save(game);
 
-        return new GuessResponse(correctPositions, game.getEndTime() != null, won);
+        boolean finished = game.getEndTime() != null;
+        String secretCode = finished && !won ? game.getSecretCode() : null;
+
+        return new GuessResponse(correctPositions, finished, won, secretCode);
     }
 
 
