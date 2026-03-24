@@ -18,7 +18,7 @@ export interface GuessResponse {
 }
 
 @Injectable({ providedIn: 'root' })
-export class Game {
+export class GameService {
   private http    = inject(HttpClient);
   private baseUrl = 'http://localhost:8080';
 

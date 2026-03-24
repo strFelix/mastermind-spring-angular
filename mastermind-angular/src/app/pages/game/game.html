@@ -1,0 +1,196 @@
+<div class="min-h-screen bg-[#0f0f0f] flex items-center justify-center px-6 py-8 font-sans">
+  <div class="w-full max-w-4xl">
+
+    <!-- header -->
+    <div class="flex items-center justify-between mb-8">
+      <h1 class="font-serif text-2xl text-white">
+        Master<span class="italic text-[#c8f04c]">mind</span>
+      </h1>
+      @if(!finished()) {
+        <button
+          (click)="confirmQuit()"
+          class="text-xs text-neutral-600 border border-[#222] rounded-lg px-4 py-2
+                 hover:text-red-400 hover:border-red-400/20 transition-colors cursor-pointer">
+          Desistir
+        </button>
+      }
+    </div>
+
+    <!-- info -->
+    @if(!finished()) {
+      <div class="flex justify-between mb-6">
+        <div>
+          <p class="text-[11px] uppercase tracking-widest text-neutral-600">Tentativa</p>
+          <p class="text-xl font-medium text-white">
+            {{ currentTurn() }} <span class="text-neutral-600">/ 10</span>
+          </p>
+        </div>
+        <div class="text-right">
+          <p class="text-[11px] uppercase tracking-widest text-neutral-600">Último acerto</p>
+          <p class="text-xl font-medium text-[#c8f04c]">
+            {{ attempts().length > 0 ? attempts()[attempts().length - 1].correctPositions : '-' }}
+          </p>
+        </div>
+      </div>
+    }
+
+    <!-- resultado: vitória -->
+    @if(finished() && won()) {
+      <div class="bg-[#c8f04c]/10 border border-[#c8f04c]/20 rounded-xl p-6 mb-6 text-center">
+        <p class="font-serif text-2xl text-[#c8f04c] mb-1">Parabéns!</p>
+        <p class="text-sm text-neutral-400 mb-3">
+          Você acertou em {{ attempts().length }} tentativa{{ attempts().length !== 1 ? 's' : '' }}
+        </p>
+        <p class="text-3xl font-medium text-white">
+          {{ score() }} <span class="text-sm text-neutral-600">pts</span>
+        </p>
+        <button
+          (click)="quit()"
+          class="mt-4 w-full bg-[#c8f04c] text-[#0f0f0f] font-medium rounded-lg py-3 text-sm
+                 cursor-pointer hover:opacity-90 transition-opacity">
+          Voltar ao dashboard
+        </button>
+      </div>
+    }
+
+    <!-- resultado: derrota -->
+    @if(finished() && !won()) {
+      <div class="bg-red-500/10 border border-red-500/20 rounded-xl p-6 mb-6 text-center">
+        <p class="font-serif text-2xl text-red-400 mb-1">Que pena!</p>
+        <p class="text-sm text-neutral-400 mb-4">Você usou todas as tentativas</p>
+        <button
+          (click)="quit()"
+          class="w-full bg-[#1a1a1a] border border-[#2a2a2a] text-neutral-400 font-medium
+                 rounded-lg py-3 text-sm cursor-pointer hover:text-white transition-colors">
+          Voltar ao dashboard
+        </button>
+      </div>
+    }
+
+    <!-- tabuleiro -->
+    <div class="flex flex-col gap-2 mb-6">
+
+      <!-- tentativas realizadas -->
+      @for(attempt of attempts(); track $index) {
+        <div class="flex items-center gap-3">
+          <span class="text-[11px] text-neutral-600 w-4 text-right">{{ $index + 1 }}</span>
+          <div class="flex gap-2">
+            @for(cell of getCells(attempt.guess); track $index) {
+              <div class="w-12 h-12 rounded-xl bg-[#222] border border-[#3a3a3a]
+                          flex items-center justify-center text-white font-medium text-base">
+                {{ cell }}
+              </div>
+            }
+          </div>
+          <div class="flex gap-1.5 ml-1">
+            @for(i of [0,1,2,3]; track i) {
+              <div class="w-2.5 h-2.5 rounded-full"
+                   [class]="i < attempt.correctPositions ? 'bg-[#c8f04c]' : 'bg-[#2a2a2a]'">
+              </div>
+            }
+          </div>
+        </div>
+      }
+
+      <!-- linha ativa -->
+      @if(!finished()) {
+        <div class="flex items-center gap-3">
+          <span class="text-[11px] text-[#c8f04c] w-4 text-right">{{ currentTurn() }}</span>
+          <div class="flex gap-2">
+            @for(i of [0,1,2,3]; track i) {
+              <div class="w-12 h-12 rounded-xl border flex items-center justify-center
+                          font-medium text-base transition-colors"
+                   [class]="currentGuess()[i]
+                     ? 'bg-[#222] border-[#c8f04c]/30 text-white'
+                     : 'bg-[#1a1a1a] border-[#2a2a2a] text-neutral-700'">
+                {{ currentGuess()[i] ?? '' }}
+              </div>
+            }
+          </div>
+          <div class="flex gap-1.5 ml-1">
+            @for(i of [0,1,2,3]; track i) {
+              <div class="w-2.5 h-2.5 rounded-full bg-[#1a1a1a] border border-[#2a2a2a]"></div>
+            }
+          </div>
+        </div>
+      }
+
+      <!-- linhas vazias -->
+      @for(row of emptyRows; track $index) {
+        <div class="flex items-center gap-3 opacity-20">
+          <span class="text-[11px] text-neutral-800 w-4 text-right">
+            {{ attempts().length + (finished() ? 1 : 2) + $index }}
+          </span>
+          <div class="flex gap-2">
+            @for(i of [0,1,2,3]; track i) {
+              <div class="w-12 h-12 rounded-xl bg-[#141414] border border-[#1f1f1f]"></div>
+            }
+          </div>
+          <div class="flex gap-1.5 ml-1">
+            @for(i of [0,1,2,3]; track i) {
+              <div class="w-2.5 h-2.5 rounded-full bg-[#1a1a1a]"></div>
+            }
+          </div>
+        </div>
+      }
+
+    </div>
+
+    <!-- input -->
+    @if(!finished()) {
+      <div class="mb-2">
+        <p class="text-[11px] uppercase tracking-widest text-neutral-700 mb-2">
+          Sua tentativa (A, B, C ou D)
+        </p>
+        <div class="flex gap-2">
+          <input
+            type="text"
+            [value]="currentGuess()"
+            (input)="onGuessInput($any($event.target).value)"
+            (keydown.enter)="submitGuess()"
+            placeholder="Ex: ABCD"
+            maxlength="4"
+            class="flex-1 bg-[#1a1a1a] border border-[#2a2a2a] rounded-xl px-4 py-3 text-sm
+                   text-white outline-none focus:border-[#c8f04c]/30 transition-colors
+                   placeholder:text-neutral-700 uppercase tracking-widest"/>
+          <button
+            (click)="submitGuess()"
+            [disabled]="currentGuess().length !== 4 || loading()"
+            [class.cursor-pointer]="currentGuess().length === 4 && !loading()"
+            [class.cursor-not-allowed]="currentGuess().length !== 4 || loading()"
+            class="bg-[#c8f04c] text-[#0f0f0f] font-medium rounded-xl px-5 text-sm
+                   hover:opacity-90 transition-opacity disabled:opacity-40">
+            {{ loading() ? '...' : 'Enviar' }}
+          </button>
+        </div>
+      </div>
+    }
+
+  </div>
+</div>
+
+<!-- modal desistir -->
+@if(showModal()) {
+  <div class="fixed inset-0 bg-black/70 flex items-center justify-center px-6 z-50">
+    <div class="bg-[#1a1a1a] border border-[#2a2a2a] rounded-2xl p-6 w-full max-w-sm">
+      <h3 class="font-serif text-xl text-white mb-2">Desistir da partida?</h3>
+      <p class="text-sm text-neutral-500 mb-6">
+        Sua pontuação será perdida e a partida será encerrada.
+      </p>
+      <div class="flex gap-3">
+        <button
+          (click)="cancelQuit()"
+          class="flex-1 border border-[#2a2a2a] text-neutral-400 rounded-xl py-3 text-sm
+                 hover:text-white transition-colors cursor-pointer">
+          Cancelar
+        </button>
+        <button
+          (click)="quit()"
+          class="flex-1 bg-red-500/20 border border-red-500/30 text-red-400 rounded-xl py-3
+                 text-sm hover:bg-red-500/30 transition-colors cursor-pointer">
+          Desistir
+        </button>
+      </div>
+    </div>
+  </div>
+}

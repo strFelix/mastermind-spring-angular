@@ -2,7 +2,7 @@ import { Component, inject, signal, OnInit } from '@angular/core';
 import { Router, RouterLink } from '@angular/router';
 import { CommonModule, DatePipe } from '@angular/common';
 import { Auth } from '../../services/auth/auth';
-import { Game, GameResponse } from '../../services/game/game';
+import { GameService, GameResponse } from '../../services/game/game';
 
 @Component({
   selector: 'app-dashboard',
@@ -12,7 +12,7 @@ import { Game, GameResponse } from '../../services/game/game';
 })
 export class Dashboard implements OnInit {
   private auth   = inject(Auth);
-  private game   = inject(Game);
+  private game   = inject(GameService);
   private router = inject(Router);
 
   username  = this.auth.getUsername();
