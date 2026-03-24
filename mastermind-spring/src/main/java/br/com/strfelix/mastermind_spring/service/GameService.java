@@ -155,7 +155,7 @@ public class GameService {
 
     public List<GameResponse> getUserHistory(Jwt token){
         Long userId = token.getClaim("id");
-        return gameRepository.findByUserIdOrderByEndTimeDesc(userId)
+        return gameRepository.findTop5ByUserIdOrderByStartTimeDesc(userId)
                 .stream()
                 .map(this::toGameResponse)
                 .toList();

@@ -8,7 +8,7 @@ import java.util.List;
 
 public interface GameRepository extends JpaRepository<Game, Long> {
 
-    public List<Game> findByUserIdOrderByEndTimeDesc(Long userId);
+    public List<Game> findTop5ByUserIdOrderByStartTimeDesc(Long userId);
 
     Long user(User user);
 }
